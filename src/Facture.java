@@ -23,9 +23,27 @@ public class Facture {
 			// if (hello[i].contains(":")) {
 			// ArrayTools.
 		}
+		int[] index = indexSection(nouvTab);
+		System.out.println(index[0] +"hello"+index[1]);
 	}
 	// }
 
+	//DONNE INDEX DES SECTIONS
+	public static int[] indexSection(String tmp[]) {
+		String separateur = ":";
+		int compteur=0;
+		int[] index = new int[3];
+		for (int i=0;i<tmp.length;i++) {
+		    if (tmp[i].contains(separateur)) {
+		        index[compteur] = i;
+		        compteur++;
+		    }
+		}
+		return index;
+	}
+	
+	
+	//ENLEVE DERNIER LIGNE
 	public static String[] remLastCase(String tmp[]) {
 		String[] out = new String[tmp.length - 1];
 		for (int i = 0; i < out.length; i++) {
@@ -34,6 +52,7 @@ public class Facture {
 		return out;
 	}
 
+	//LIRE FICHIER
 	public static String[] lireFichier(String cheminFichier) throws IOException {
 		String[] tableau = new String[compteLine(FICHIER) + 1];
 		int i = 0;
@@ -68,6 +87,7 @@ public class Facture {
 
 	}
 
+	//COMPTE LIGNE DU FICHIER
 	public static int compteLine(String filename) throws IOException {
 		InputStream is = new BufferedInputStream(new FileInputStream(filename));
 		try {
