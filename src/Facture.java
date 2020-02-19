@@ -8,7 +8,7 @@ import java.io.InputStream;
 import java.*;
 import java.util.Arrays;;
 
-//Atelier 7 sorie 00 pour extraire les ligne ayant x nom.
+//Atelier 7 sorie 00 pour extraire les ligne ayant x nom abdesssamad.
 
 public class Facture {
 
