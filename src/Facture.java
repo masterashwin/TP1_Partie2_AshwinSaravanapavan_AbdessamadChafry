@@ -24,7 +24,67 @@ public class Facture {
 			// ArrayTools.
 		}
 		int[] index = indexSection(nouvTab);
-		System.out.println(index[0] +"hello"+index[1]);
+		System.out.println(index[0] + "hello"+index[1] + "hello" +index[2]);
+		//Creer tableau personne
+		String[][] tabPersonne = new String[index[1]-1][index[1]-1];
+		
+		for( int i=index[0] ; i < index[1]-1; i++){
+			tabPersonne[i][0]= nouvTab[i+1];
+			tabPersonne[i][1]= "0";
+			
+			System.out.println(tabPersonne[i][0]);
+			System.out.println(tabPersonne[i][1]);		
+		}
+		
+		//Creer tableau plat
+		String[][] tabPlat = new String[index[2]-index[1]][index[2]-index[1]];
+		for( int i=index[1]+1 ; i < index[2]; i++){
+			
+			int compteur = 0;
+			
+			String retour = "",retour1 = "", separateur = " ";
+			
+			String[] parti = nouvTab[i].split(separateur);
+			System.out.println(nouvTab[i]);
+			retour = parti[0];
+			retour1 = parti[1];		
+		
+			System.out.println(retour);
+			System.out.println(retour1);
+		
+			tabPlat[compteur][0]= retour;	
+			tabPlat[compteur][1] = retour1;		
+			compteur++;
+		}
+		
+		//Creer tableau commande
+		String[][] tabCommande = new String[nouvTab.length-index[2]][nouvTab.length-index[2]];
+		for( int i=index[2]+1 ; i < nouvTab.length; i++){
+			
+			int compteur = 0;
+			
+			String retour = "",retour1 = "",retour2 = "", separateur = " ";
+			
+			String[] parti = nouvTab[i].split(separateur);
+			System.out.println(nouvTab[i]);
+			retour = parti[0];
+			retour1 = parti[1];	
+			retour2 = parti[2];
+		
+			System.out.println(retour);
+			System.out.println(retour1);
+			System.out.println(retour2);
+		
+			tabCommande[compteur][0]= retour;	
+			tabCommande[compteur][1] = retour1;	
+			tabCommande[compteur][2] = retour2;	
+			
+			
+			compteur++;
+		}
+		
+	
+
 	}
 	// }
 
@@ -40,6 +100,21 @@ public class Facture {
 		    }
 		}
 		return index;
+	}
+	
+	//Trouve le mot dans un tableau
+	public static String retourMot(String tab[], int ligne, int colonne) {
+		String retour = "", separateur = " ";
+		String[] parti = tab[ligne].split(separateur);
+			System.out.println(tab[ligne]);
+		if(colonne == 0) {
+			retour = parti[0];
+		}else if( colonne == 1){
+			retour = parti[1];
+		}else if(colonne == 2){
+			retour = parti[2];
+		}
+		return retour;
 	}
 	
 	
