@@ -5,8 +5,6 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
-import java.*;
-import java.util.Arrays;;
 
 //Atelier 7 sorie 00 pour extraire les ligne ayant x nom abdesssamad.
 
@@ -14,7 +12,6 @@ public class CalculeFacture {
 
 	static String FICHIER = "restaurant.txt";
 
-	
 	// }
 	public static int[] tabIndex(int[] tab) {
 		return tab;
@@ -25,61 +22,63 @@ public class CalculeFacture {
 
 		for (int i = tabIndex[0]; i < tabIndex[1] - 1; i++) {
 			tabPersonne[i][0] = tabComplet[i + 1];
-			tabPersonne[i][1] = "0";
+			tabPersonne[i][1] = "0 ";
 
 		}
 		return tabPersonne;
 	}
 
 	public static String[][] creerTabPlat(int[] tabIndex, String[] tabComplet) {
-		
 		String[][] tabPlat = new String[tabIndex[2] - tabIndex[1]][tabIndex[2] - tabIndex[1]];
-		
+
 		int compteur = 0;
-		for (int i = tabIndex[1] + 1; i < tabIndex[2]; i++) {
+		try {
+			for (int i = tabIndex[1] + 1; i < tabIndex[2]; i++) {
 
-			
+				String retour = "", retour1 = "", separateur = " ";
 
-			String retour = "", retour1 = "", separateur = " ";
+				String[] parti = tabComplet[i].split(separateur);
+				retour = parti[0];
+				retour1 = parti[1];
 
-			String[] parti = tabComplet[i].split(separateur);
-			retour = parti[0];
-			retour1 = parti[1];
+				tabPlat[compteur][0] = retour;
+				tabPlat[compteur][1] = retour1;
+				compteur++;
 
-			tabPlat[compteur][0] = retour;
-			tabPlat[compteur][1] = retour1;
-			compteur++;
-
-
+			}
+		} catch (Exception e) {
+			System.out.println("Le fichier ne respect pas le format demandé.");
 		}
 
-		
 		return tabPlat;
 	}
 
 	public static String[][] creerTabCommande(int[] tabIndex, String[] tabComplet) {
-		String[][] tabCommande = new String[(tabComplet.length - tabIndex[2])-1][3];
+		String[][] tabCommande = new String[tabComplet.length - tabIndex[2]][3];
 		int compteur = 0;
+		try {
+			for (int i = tabIndex[2] + 1; i < tabComplet.length; i++) {
 
-		for (int i = tabIndex[2] + 1; i < tabComplet.length; i++) {
+				String retour = "", retour1 = "", retour2 = "", separateur = " ";
 
+				String[] parti = tabComplet[i].split(separateur);
+				// System.out.println(tabComplet[i]);
+				retour = parti[0];
+				retour1 = parti[1];
+				retour2 = parti[2];
 
-			String retour = "", retour1 = "", retour2 = "", separateur = " ";
+				tabCommande[compteur][0] = retour;
+				tabCommande[compteur][1] = retour1;
+				tabCommande[compteur][2] = retour2;
 
-			String[] parti = tabComplet[i].split(separateur);
-			//System.out.println(tabComplet[i]);
-			retour = parti[0];
-			retour1 = parti[1];
-			retour2 = parti[2];
+				compteur++;
 
-			tabCommande[compteur][0] = retour;
-			tabCommande[compteur][1] = retour1;
-			tabCommande[compteur][2] = retour2;
-
-			compteur++;
-
+			}
+		} catch (Exception e) {
+			System.out.println("Le fichier ne respect pas le format demandé.");
 		}
-		//System.out.println("COUCOU" + tabCommande.length);
+
+		// System.out.println("COUCOU" + tabCommande.length);
 		return tabCommande;
 	}
 
@@ -88,12 +87,17 @@ public class CalculeFacture {
 		String separateur = ":";
 		int compteur = 0;
 		int[] index = new int[3];
-		for (int i = 0; i < tmp.length; i++) {
-			if (tmp[i].contains(separateur)) {
-				index[compteur] = i;
-				compteur++;
+		try {
+			for (int i = 0; i < tmp.length; i++) {
+				if (tmp[i].contains(separateur)) {
+					index[compteur] = i;
+					compteur++;
+				}
 			}
+		} catch (Exception e) {
+			System.out.println("Le fichier ne respect pas le format demandé.");
 		}
+		
 		return index;
 	}
 
@@ -183,63 +187,52 @@ public class CalculeFacture {
 
 	public static void additionneString(String[][] tabPersn) {
 		String separateur = " ";
-		
+
+		for (int i = 0; i < tabPersn.length; i++) {
+
+		}
+
 		for (int i = 0; i < tabPersn.length; i++) {
 			String[] parti = tabPersn[i][1].split(separateur);
-			double  retour1 = 0, retour2 = 0,retour3 = 0,retour4 = 0,retour5 = 0, total = 0;
-			
-			
-			if(parti.length < 1 ) {
-				retour1 += Double.parseDouble(parti[0]);
-				System.out.println(parti[0]);
+			double retour1 = 0, total = 0;
+
+			for (int j = 0; j < parti.length; j++) {
+
+				retour1 += Double.parseDouble(parti[j]);
 			}
-			if(parti.length < 2 ) {
-				retour1 += Double.parseDouble(parti[1]);
-				System.out.println(parti[1]);
-			}
-			if(parti.length < 3 ) {
-				retour1 += Double.parseDouble(parti[2]);
-				System.out.println(parti[2]);
-			}
-			if(parti.length < 4 ) {
-				retour1 += Double.parseDouble(parti[6]);
-			}
-			if(parti.length < 5 ) {
-				retour1 += Double.parseDouble(parti[7]);
-			}
-		
-			
-			total = retour1 + retour2 + retour3 +retour4 +retour5 ;
-			
+
+			total = retour1;
+
 			tabPersn[i][1] = String.valueOf(total);
-			
+
 		}
-		
+
 		for (int i = 0; i < tabPersn[0].length; i++) {
 			System.out.println(tabPersn[i][0] + " " + tabPersn[i][1] + "$");
 		}
-		
+
 	}
+
 	public static void afficher(String[][] tabPlat, String[][] tabPers, String[][] tabCom) {
-		System.out.println("Bienvenue chez Abdessamad Chafry et Ashwin Saravanapavan!\nFacture:\n");
+		System.out.println("Bienvenue chez Abdessamad Chafry et Ashwin Saravanapavan!\n\nFacture:");
 		double prix = 0;
 		double quantite = 0;
 		double total = 0;
 		for (int i = 0; i < tabCom[0].length; i++) {
-		
+
 			for (int j = 0; j < tabPlat[0].length; j++) {
-			
+
 				if (tabCom[i][1].equals(tabPlat[j][0])) {
-					
+
 					prix = Double.parseDouble(tabPlat[j][1]);
-					
+
 					quantite = Double.parseDouble(tabCom[i][2]);
-					
+
 					total = prix * quantite;
-					
+
 					for (int k = 0; k < tabPers[0].length; k++) {
 						if (tabPers[k][0].equals(tabCom[i][0])) {
-							tabPers[k][1] += " "+ total + " ";
+							tabPers[k][1] += total + " ";
 						}
 					}
 
@@ -247,7 +240,7 @@ public class CalculeFacture {
 			}
 
 		}
-		
+
 		additionneString(tabPers);
 
 	}

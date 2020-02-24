@@ -1,0 +1,17 @@
+Pour les variables: 
+• Premier caractère doit être une lettre en minuscule
+• La longueur maximal est de 30 caractere
+• L'espace, point et caractere spéciaux ne sont pas permis sauf le caratère _
+• Le nom doit être unique et significatif dans la class
+• Le caractère _ doit seulement etre utiliser pour séparer les mots 
+• La première lettre du deuxieme mot doit etre en majuscule sauf si on utilise le caractère _
+• Les accent sont interdit (è,à,ù,ç,etc....)
+• Les abrévations peuvent être utiliser 
+Pour les constantes:
+• Les constantes doivent etre tout en majuscule
+• Les accent sont interdit (è,à,ù,ç,etc....)
+• Les abrévations peuvent être utiliser
+• La longueur maximal est de 30 caractere
+• L'espace, point et caractere spéciaux ne sont pas permis sauf le caratère _
+• Le nom doit être unique et significatif dans la class
+• Seul la caractère _ doit être utilisé pour séparer les mots
