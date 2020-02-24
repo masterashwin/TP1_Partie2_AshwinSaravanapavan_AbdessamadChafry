@@ -6,7 +6,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
 
-//Atelier 7 sorie 00 pour extraire les ligne ayant x nom abdesssamad.
+//Atelier 7 sorie 00 pour extraire les ligne ayant x nom abdesssamadsalut.
 
 public class CalculeFacture {
 
